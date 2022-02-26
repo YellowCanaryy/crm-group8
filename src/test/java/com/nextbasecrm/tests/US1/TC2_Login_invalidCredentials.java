@@ -1,5 +1,7 @@
 package com.nextbasecrm.tests.US1;
 
+import com.nextbasecrm.tests.utilities.BrowserUtils;
+import com.nextbasecrm.tests.utilities.ConfigurationReader;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +30,7 @@ public class TC2_Login_invalidCredentials {
 
         //Enter invalid username and password
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        userName.sendKeys("h22@cydeo.com");
+        userName.sendKeys("hr22@cydeo.com");
 
         WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
         password.sendKeys("User");
@@ -48,6 +50,7 @@ public class TC2_Login_invalidCredentials {
 
     @AfterMethod
     public void tearDown(){
+        BrowserUtils.sleep(3);
         driver.close();
     }
 

@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests.US1;
 
+import com.nextbasecrm.tests.utilities.BrowserUtils;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -44,10 +45,16 @@ public class TC1_Login_validCredentials {
         WebElement logInBtn = driver.findElement(By.xpath("//input[@type='submit']"));
         logInBtn.click();
 
+        //verify actual title
+        String expectedLogInBtn = "Portal";
+        String actualLoginTitle = driver.getTitle();
+        Assert.assertEquals(actualLoginTitle, expectedLogInBtn);
+
     }
 
     @AfterMethod
     public void tearDown(){
+        BrowserUtils.sleep(3);
         driver.close();
     }
 

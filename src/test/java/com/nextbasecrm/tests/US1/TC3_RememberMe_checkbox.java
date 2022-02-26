@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests.US1;
 
+import com.nextbasecrm.tests.utilities.BrowserUtils;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -40,6 +41,7 @@ public class TC3_RememberMe_checkbox {
     }
     @AfterMethod
     public void tearDown(){
+        BrowserUtils.sleep(3);
         driver.close();
     }
 
