@@ -44,7 +44,7 @@ public class US_11_ProfileAccess_and_Modules {
         List<WebElement> profileModules = driver.findElements(By.xpath("//span[@class='menu-item-link-text']"));
         System.out.println("profileModules.size() = " + profileModules.size());
         List<String > expectedModules= List.of(new String[]{"General", "Drive", "Tasks", "Calendar", "conversations" });
-        Assert.assertEquals(profileModules.size(),expectedModules.size())
+        Assert.assertEquals(profileModules.size(),expectedModules.size());
 
     }
 
