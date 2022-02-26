@@ -1,7 +1,6 @@
-package com.nextbasecrm.tests.US1_Vika;
+package com.nextbasecrm.tests.US1;
 
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
