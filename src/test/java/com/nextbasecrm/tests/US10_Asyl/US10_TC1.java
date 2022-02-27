@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -43,11 +45,21 @@ public class US10_TC1 {
        Thread.sleep(1000);
        messageBody.sendKeys("Please, finish your TC");
 
-        driver.switchTo().defaultContent();
+       driver.switchTo().defaultContent();
 
+       WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
+       sendButton.click();
 
+       WebElement taskCreationConfirmationMessage = driver.findElement(By.xpath("(//span[@class='feed-task-info-text-title'])[1]"));
+       String expectedMessage = "Task has been created";
+       String actualMessage = taskCreationConfirmationMessage.getText();
+
+        Assert.assertEquals(actualMessage, expectedMessage, "Messages do not match");
 
 
     }
-
+    @AfterMethod
+    public void tearDown(){
+        driver.close();
+    }
 }
