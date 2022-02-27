@@ -20,11 +20,6 @@ public class US10_TC1 {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
-    }
-    @Test
-            public void logIn(){
-        //Enter valid username and password
-
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
         userName.sendKeys(ConfigurationReader.getProperty("username"));
 
@@ -36,5 +31,10 @@ public class US10_TC1 {
         logInBtn.click();
     }
 
+@Test
+    public void taskCreationConfirmationMessage(){
+        driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-tasks']//span")).click();
+
+}
 
 }
