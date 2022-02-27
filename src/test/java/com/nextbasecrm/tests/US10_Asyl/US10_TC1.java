@@ -26,7 +26,7 @@ public class US10_TC1 {
 
         //UserName input
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        userName.sendKeys(ConfigurationReader.getProperty("username"));
+        userName.sendKeys("helpdesk22@cydeo.com");
 
         //Password input
         WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
