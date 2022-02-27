@@ -34,7 +34,8 @@ public class US10_TC1 {
 @Test
     public void taskCreationConfirmationMessage(){
         driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-tasks']//span")).click();
-
+        WebElement titlePanel = driver.findElement(By.xpath("//div[@class='task-info-panel']"));
+        titlePanel.click();
 }
 
 }
