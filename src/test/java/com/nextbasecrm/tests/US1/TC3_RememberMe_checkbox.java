@@ -1,7 +1,7 @@
-package com.nextbasecrm.tests.US1_Vika;
+package com.nextbasecrm.tests.US1;
 
+import com.nextbasecrm.tests.utilities.BrowserUtils;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,6 +41,7 @@ public class TC3_RememberMe_checkbox {
     }
     @AfterMethod
     public void tearDown(){
+        BrowserUtils.sleep(3);
         driver.close();
     }
 
