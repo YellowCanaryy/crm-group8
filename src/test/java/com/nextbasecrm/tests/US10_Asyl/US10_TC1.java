@@ -3,6 +3,7 @@ package com.nextbasecrm.tests.US10_Asyl;
 import com.nextbasecrm.tests.utilities.ConfigurationReader;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
@@ -31,13 +32,22 @@ public class US10_TC1 {
         logInBtn.click();
     }
 
-@Test
-    public void taskCreationConfirmationMessage(){
-        driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-tasks']//span")).click();
-       // WebElement titlePanel = driver.findElement(By.xpath("//div[@class='task-info-panel']"));
-        WebElement titleMessage = driver.findElement(By.xpath("//input[@placeholder='Things to do']"));
-        titleMessage.click();
-       titleMessage.sendKeys("Reminder");
-}
+    @Test
+    public void taskCreationConfirmationMessage() throws InterruptedException {
+       driver.findElement(By.xpath("//span[@id='feed-add-post-form-tab-tasks']//span")).click();
+       WebElement titleMessage = driver.findElement(By.xpath("//input[@placeholder='Things to do']"));
+        titleMessage.sendKeys("Reminder");
+
+       driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='bx-html-editor-iframe-cnt-lifefeed_task_form']/iframe")));
+       WebElement messageBody = driver.findElement(By.xpath("//body"));
+       Thread.sleep(1000);
+       messageBody.sendKeys("Please, finish your TC");
+
+        driver.switchTo().defaultContent();
+
+
+
+
+    }
 
 }
