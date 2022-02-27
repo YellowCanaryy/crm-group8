@@ -37,6 +37,7 @@ public class TC2_Login_invalidCredentials {
 
         //click login button
         WebElement logInBtn = driver.findElement(By.xpath("//input[@type='submit']"));
+        BrowserUtils.sleep(3);
         logInBtn.click();
 
         //Verify incorrect login message
