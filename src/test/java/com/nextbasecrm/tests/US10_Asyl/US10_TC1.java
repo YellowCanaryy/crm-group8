@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class TaskTab {
+public class US10_TC1 {
     WebDriver driver;
 
     @BeforeMethod
