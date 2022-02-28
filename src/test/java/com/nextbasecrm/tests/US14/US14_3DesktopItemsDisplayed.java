@@ -22,7 +22,6 @@ public class US14_3DesktopItemsDisplayed {
         driver.get("https://login1.nextbasecrm.com/");
     }
 
-
     @Test
     public void threeDesktopOptions() {
         CRM_Utilities.crm_login(driver);
