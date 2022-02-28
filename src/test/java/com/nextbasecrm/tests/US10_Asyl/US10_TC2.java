@@ -21,11 +21,11 @@ public class US10_TC2 {
         driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(ConfigurationReader.getProperty("env"));
+        driver.get("https://login2.nextbasecrm.com/");
 
         //UserName input
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        userName.sendKeys(ConfigurationReader.getProperty("username"));
+        userName.sendKeys("helpdesk22@cydeo.com");
 
         //Password input
         WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
@@ -58,9 +58,11 @@ public class US10_TC2 {
 
         Assert.assertEquals(actualErrorMessage,expectedErrorMessage,"Messages do not match");
     }
-    @AfterMethod
+   /* @AfterMethod
     public void tearDown(){
         driver.close();
     }
+
+    */
 
 }

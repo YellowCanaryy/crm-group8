@@ -1,6 +1,5 @@
 package com.nextbasecrm.tests.US10_Asyl;
 
-import com.nextbasecrm.tests.utilities.ConfigurationReader;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -19,10 +18,10 @@ public class US10_TC1 {
     @BeforeMethod
     public void SetUpMethod() {
         //Open browser
-        driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
+        driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(ConfigurationReader.getProperty("env"));
+        driver.get("https://login2.nextbasecrm.com/");
 
         //UserName input
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
@@ -59,16 +58,22 @@ public class US10_TC1 {
        sendButton.click();
 
        //Locate message creation confirmation and compare actual one with expected
-       WebElement taskCreationConfirmationMessage = driver.findElement(By.xpath("(//span[@class='feed-task-info-text-title'])[1]"));
-       String expectedMessage = "Task has been created";
-       String actualMessage = taskCreationConfirmationMessage.getText();
+      // WebElement taskCreationConfirmationMessage = driver.findElement(By.xpath("(//span[@class='feed-task-info-text-title'])[1]"));
+      // String expectedMessage = "Task has been created";
+     // String actualMessage = taskCreationConfirmationMessage.getText();
 
+     //  Assert.assertEquals(actualMessage, expectedMessage, "Messages do not match");
+     //div[@class='feed-create-task-popup-content']/div/div[1]
+
+        WebElement taskCreationConfirmationPopUp = driver.findElement(By.xpath("//div[@class='feed-create-task-popup-content']/div/div[1]"));
+        String expectedMessage = "Task has been created";
+        String actualMessage = taskCreationConfirmationPopUp.getText();
         Assert.assertEquals(actualMessage, expectedMessage, "Messages do not match");
-
-
     }
-    @AfterMethod
+   /* @AfterMethod
     public void tearDown(){
         driver.close();
     }
+
+    */
 }
