@@ -1,4 +1,4 @@
-package com.nextbasecrm.tests.US14;
+package com.nextbasecrm.tests;
 
 import com.nextbasecrm.tests.utilities.CRM_Utilities;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
