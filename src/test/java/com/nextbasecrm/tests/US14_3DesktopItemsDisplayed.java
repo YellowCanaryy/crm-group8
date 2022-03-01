@@ -1,4 +1,4 @@
-package com.nextbasecrm.tests.US14;
+package com.nextbasecrm.tests;
 
 import com.nextbasecrm.tests.utilities.CRM_Utilities;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
@@ -21,7 +21,6 @@ public class US14_3DesktopItemsDisplayed {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://login1.nextbasecrm.com/");
     }
-
 
     @Test
     public void threeDesktopOptions() {
