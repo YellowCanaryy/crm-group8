@@ -75,7 +75,6 @@ public class US13 {
         Assert.assertEquals(actualTitle, expectedTitle);
 
     }
-
     @AfterMethod
     public void close() {
         driver.close();
