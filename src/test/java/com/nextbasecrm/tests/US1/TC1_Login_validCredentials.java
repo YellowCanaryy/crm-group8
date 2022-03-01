@@ -1,5 +1,6 @@
-package com.nextbasecrm.tests.US1_Vika;
+package com.nextbasecrm.tests.US1;
 
+import com.nextbasecrm.tests.utilities.BrowserUtils;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class TC2_Login_invalidCredentials {
+public class TC1_Login_validCredentials {
 
     WebDriver driver;
     @BeforeMethod
@@ -24,32 +25,46 @@ public class TC2_Login_invalidCredentials {
     }
 
     @Test
-    public void invalidCredentialsLogIn(){
+    public void validCredentialsLogIn(){
 
-        //Enter invalid username and password
+        //locate and verify "Authorization" title
+        WebElement titleAuthorization = driver.findElement(By.xpath("//div[@class='log-popup-header']"));
+        String expectedTitle = "Authorization";
+        String actualTitle = driver.getTitle();
+        Assert.assertEquals(actualTitle, expectedTitle, "Invalid title");
+
+        //Enter valid user name
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        userName.sendKeys("h22@cydeo.com");
+        userName.sendKeys("hr22@cydeo.com");
 
+        //Enter valid password
         WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("User");
+        password.sendKeys("UserUser");
 
         //click login button
         WebElement logInBtn = driver.findElement(By.xpath("//input[@type='submit']"));
         logInBtn.click();
 
-        //Verify incorrect login message
-        WebElement incorrectLoginMessage = driver.findElement(By.xpath("//div[@class='errortext']"));
-        String expectedMessage = "Incorrect login or password";
-        String actualMessage = incorrectLoginMessage.getText();
-
-        Assert.assertEquals(actualMessage, expectedMessage, "invalid message");
+        //verify actual title
+        String expectedLogInBtn = "Portal";
+        String actualLoginTitle = driver.getTitle();
+        Assert.assertEquals(actualLoginTitle, expectedLogInBtn);
 
     }
 
     @AfterMethod
     public void tearDown(){
+        BrowserUtils.sleep(3);
         driver.close();
     }
 
 }
+
+
+
+
+
+
+
+
 
