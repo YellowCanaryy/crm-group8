@@ -1,4 +1,4 @@
-package com.nextbasecrm.tests.US13;
+package com.nextbasecrm.tests;
 
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class US13 {
+public class US13_1 {
     WebDriver driver;
 
     @BeforeMethod
@@ -41,7 +41,7 @@ public class US13 {
         //switch to Iframe
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
         // writing message
-        String message = "I appraciate You!";
+        String message = "xxx!";
         driver.findElement(By.xpath("//body")).sendKeys(Keys.CLEAR + message);
 
         Thread.sleep(3000);
@@ -53,8 +53,6 @@ public class US13 {
         WebElement element = driver.findElement(By.xpath(locator));
         Assert.assertTrue(element.isDisplayed());
         Thread.sleep(5000);
-
-
     }
 
     @Test
@@ -71,12 +69,13 @@ public class US13 {
         Thread.sleep(3000);
         driver.findElement(By.xpath("(//button[.='Send'])[3]")).click();
         String actualTitle = driver.findElement(By.xpath("//span[.='The message title is not specified']")).getText();
-        String expectedTitle = "The message title is not specified";
-        Assert.assertEquals(actualTitle, expectedTitle);
+        String expectedTitle="The message title is not specified";
+        Assert.assertEquals(actualTitle,expectedTitle);
 
     }
     @AfterMethod
-    public void close() {
+    public void close(){
         driver.close();
     }
+
 }

@@ -1,6 +1,7 @@
-package com.nextbasecrm.tests.US1;
+package com.nextbasecrm.tests;
 
 import com.nextbasecrm.tests.utilities.BrowserUtils;
+import com.nextbasecrm.tests.utilities.ConfigurationReader;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class TC1_Login_validCredentials {
+public class TC2_Login_invalidCredentials {
 
     WebDriver driver;
     @BeforeMethod
@@ -25,30 +26,26 @@ public class TC1_Login_validCredentials {
     }
 
     @Test
-    public void validCredentialsLogIn(){
+    public void invalidCredentialsLogIn(){
 
-        //locate and verify "Authorization" title
-        WebElement titleAuthorization = driver.findElement(By.xpath("//div[@class='log-popup-header']"));
-        String expectedTitle = "Authorization";
-        String actualTitle = driver.getTitle();
-        Assert.assertEquals(actualTitle, expectedTitle, "Invalid title");
-
-        //Enter valid user name
+        //Enter invalid username and password
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
         userName.sendKeys("hr22@cydeo.com");
 
-        //Enter valid password
         WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
+        password.sendKeys("User");
 
         //click login button
         WebElement logInBtn = driver.findElement(By.xpath("//input[@type='submit']"));
+        BrowserUtils.sleep(3);
         logInBtn.click();
 
-        //verify actual title
-        String expectedLogInBtn = "Portal";
-        String actualLoginTitle = driver.getTitle();
-        Assert.assertEquals(actualLoginTitle, expectedLogInBtn);
+        //Verify incorrect login message
+        WebElement incorrectLoginMessage = driver.findElement(By.xpath("//div[@class='errortext']"));
+        String expectedMessage = "Incorrect login or password";
+        String actualMessage = incorrectLoginMessage.getText();
+
+        Assert.assertEquals(actualMessage, expectedMessage, "invalid message");
 
     }
 
@@ -59,12 +56,4 @@ public class TC1_Login_validCredentials {
     }
 
 }
-
-
-
-
-
-
-
-
 
