@@ -1,4 +1,4 @@
-package com.nextbasecrm.tests.US10_Asyl;
+package com.nextbasecrm.tests;
 
 import com.nextbasecrm.tests.utilities.ConfigurationReader;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;

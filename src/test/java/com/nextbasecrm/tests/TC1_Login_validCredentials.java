@@ -1,4 +1,4 @@
-package com.nextbasecrm.tests.NextBaseCrm;
+package com.nextbasecrm.tests;
 
 import com.nextbasecrm.tests.utilities.BrowserUtils;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class US1_Vika {
+public class TC1_Login_validCredentials {
 
     WebDriver driver;
     @BeforeMethod
