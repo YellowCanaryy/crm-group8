@@ -1,17 +1,17 @@
-package com.nextbasecrm.tests.NextBaseCrm;
+package com.nextbasecrm.tests;
 
-import com.nextbasecrm.tests.utilities.BrowserUtils;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Correct_Module {
+public class US_9_Modules {
 
     WebDriver driver;
 
@@ -47,7 +47,9 @@ public class Correct_Module {
         WebElement modules = driver.findElement(By.xpath("//a[@title='Activity Stream']"));
         modules.click();
 
-        BrowserUtils.verifyTitle(driver,"(1) Portal");
+        String expectedTitle = "(4) Portal";
+        String actualTitle = driver.getTitle();
+        Assert.assertEquals(actualTitle, expectedTitle);
 
     }
 
@@ -72,7 +74,10 @@ public class Correct_Module {
 
         WebElement Task = driver.findElement(By.xpath("//a[@title='Tasks']"));
         Task.click();
-        BrowserUtils.verifyTitle(driver, "Site map");
+
+        String tasksExpectedTitle = "Site map";
+        String tasksActualTitle = driver.getTitle();
+        Assert.assertEquals(tasksActualTitle, tasksExpectedTitle);
 
     }
 
@@ -98,7 +103,9 @@ public class Correct_Module {
         ChatAndCalls.click();
 
 
-        BrowserUtils.verifyTitle(driver, "Chat and Calls");
+        String chatExpectedTitle = "Chat and Calls";
+        String chatActualTitle = driver.getTitle();
+        Assert.assertEquals(chatActualTitle, chatExpectedTitle);
 
     }
 
@@ -120,12 +127,13 @@ public class Correct_Module {
         WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
         loginButton.click();
 
-        BrowserUtils.sleep(3);
 
         WebElement Workgroups = driver.findElement(By.xpath("//a[@title='Workgroups']"));
         Workgroups.click();
 
-        BrowserUtils.verifyTitle(driver, "Workgroups and projects");
+        String workExpectedTitle = "Workgroups and projects";
+        String workActualTitle = driver.getTitle();
+        Assert.assertEquals(workActualTitle, workExpectedTitle);
 
 
     }
@@ -150,7 +158,9 @@ public class Correct_Module {
         WebElement Drive = driver.findElement(By.xpath("//a[@title='Drive']"));
         Drive.click();
 
-        BrowserUtils.verifyTitle(driver, "Site map");
+        String driveExpectedTitle = "Site map";
+        String driveActualTitle = driver.getTitle();
+        Assert.assertEquals(driveActualTitle, driveExpectedTitle);
 
 
     }
@@ -176,7 +186,9 @@ public class Correct_Module {
         WebElement Calendar = driver.findElement(By.xpath("//a[@title='Calendar']"));
         Calendar.click();
 
-        BrowserUtils.verifyTitle(driver, "Site map");
+        String calendarExpectedTitle = "Site map";
+        String calendarActualTitle = driver.getTitle();
+        Assert.assertEquals(calendarActualTitle, calendarExpectedTitle);
 
 
     }
@@ -201,7 +213,9 @@ public class Correct_Module {
         WebElement Mail = driver.findElement(By.xpath("//a[@title='Mail']"));
         Mail.click();
 
-        BrowserUtils.verifyTitle(driver, "(2) Mailbox Integration");
+        String MailExpectedTitle = "(2) Mailbox Integration";
+        String MailActualTitle = driver.getTitle();
+        Assert.assertEquals(MailActualTitle,MailExpectedTitle);
 
     }
 
@@ -225,7 +239,9 @@ public class Correct_Module {
         WebElement ContactCenter = driver.findElement(By.xpath("//a[@title='Contact Center']"));
         ContactCenter.click();
 
-        BrowserUtils.verifyTitle(driver, "Contact Center");
+        String contactCenterExpectedTitle = "Contact Center";
+        String contactCenterActualTitle = driver.getTitle();
+        Assert.assertEquals(contactCenterActualTitle, contactCenterExpectedTitle);
     }
 
     @Test
@@ -248,7 +264,9 @@ public class Correct_Module {
         WebElement TimeAndReports = driver.findElement(By.xpath("//a[@title='Time and Reports']"));
         TimeAndReports.click();
 
-        BrowserUtils.verifyTitle(driver, "Absence Chart");
+        String timeAndReportsExpectedTitle = "Absence Chart";
+        String timeAndReportsActualTitle = driver.getTitle();
+        Assert.assertEquals(timeAndReportsActualTitle, timeAndReportsExpectedTitle);
     }
 
     @Test
@@ -271,7 +289,9 @@ public class Correct_Module {
         WebElement Employees = driver.findElement(By.xpath("//a[@title='Employees']"));
         Employees.click();
 
-        BrowserUtils.verifyTitle(driver, "(1) Company Structure");
+        String EmployeesExpectedTitle = "(4) Company Structure";
+        String EmployeesActualTitle = driver.getTitle();
+        Assert.assertEquals(EmployeesActualTitle, EmployeesExpectedTitle);
     }
 
     @Test
@@ -294,7 +314,9 @@ public class Correct_Module {
         WebElement Services = driver.findElement(By.xpath("//a[@title='Services']"));
         Services.click();
 
-        BrowserUtils.verifyTitle(driver, "Meeting Rooms");
+        String ServicesExpectedTitle = "Meeting Rooms";
+        String ServicesActualTitle = driver.getTitle();
+        Assert.assertEquals(ServicesActualTitle, ServicesExpectedTitle);
     }
 
     @Test
@@ -317,8 +339,17 @@ public class Correct_Module {
         WebElement Company = driver.findElement(By.xpath("//a[@title='Company']"));
         Company.click();
 
-        BrowserUtils.verifyTitle(driver, "Company");
+        String CompanyExpectedTitle = "Company";
+        String CompanyActualTitle = driver.getTitle();
+        Assert.assertEquals(CompanyActualTitle, CompanyExpectedTitle);
+    }
+
+    @AfterMethod
+    public void tearDownMethod(){
+
+        driver.close();
     }
 
 }
+
 
