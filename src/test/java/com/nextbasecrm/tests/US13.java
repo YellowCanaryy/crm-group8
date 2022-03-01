@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests;
 
+import com.nextbasecrm.tests.utilities.ConfigurationReader;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -18,10 +19,10 @@ public class US13 {
     @BeforeMethod
     public void SetUp() {
         //1. Open browser
-        driver = WebDriverFactory.getDriver("chrome");
+        driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login1.nextbasecrm.com/stream/?login=yes");
+        driver.get(ConfigurationReader.getProperty("env"));
 
     }
 
