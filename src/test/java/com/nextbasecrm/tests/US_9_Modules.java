@@ -1,5 +1,8 @@
 package com.nextbasecrm.tests;
 
+import com.nextbasecrm.tests.utilities.BrowserUtils;
+import com.nextbasecrm.tests.utilities.CRM_Utilities;
+import com.nextbasecrm.tests.utilities.ConfigurationReader;
 import com.nextbasecrm.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,338 +19,145 @@ public class US_9_Modules {
     WebDriver driver;
 
     @BeforeMethod
-    public void setUp() {
-        driver = WebDriverFactory.getDriver("chrome");
+    public void setUp(){
+
+        String browserType = ConfigurationReader.getProperty("browser");
+
+        driver = WebDriverFactory.getDriver(browserType);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://login2.nextbasecrm.com/");
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-    }
+        driver.get(ConfigurationReader.getProperty("env1"));
 
-
-    @Test
-    public void ActivityStream_Portal() {
-
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("hr22@cydeo.com");
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-
-        WebElement modules = driver.findElement(By.xpath("//a[@title='Activity Stream']"));
-        modules.click();
-
-        String expectedTitle = "(4) Portal";
-        String actualTitle = driver.getTitle();
-        Assert.assertEquals(actualTitle, expectedTitle);
+        CRM_Utilities.crm_login(driver);
 
     }
 
     @Test
-    public void Task_Site_Map() {
-
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("helpdesk22@cydeo.com");
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-
-        WebElement Task = driver.findElement(By.xpath("//a[@title='Tasks']"));
-        Task.click();
-
-        String tasksExpectedTitle = "Site map";
-        String tasksActualTitle = driver.getTitle();
-        Assert.assertEquals(tasksActualTitle, tasksExpectedTitle);
+    public void leftSideActivityStreamTest(){
+        WebElement actStr = driver.findElement(By.xpath("//span[contains(.,'Activity Stream')]"));
+        actStr.click();
+        String expectedTitle="Portal";
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Activity Stream Title did not appear correctly!");
 
     }
 
     @Test
-    public void ChatAndCalls() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("marketing22@cydeo.com");
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-
-        WebElement ChatAndCalls = driver.findElement(By.xpath("//a[@title='Chat and Calls']"));
-        ChatAndCalls.click();
-
-
-        String chatExpectedTitle = "Chat and Calls";
-        String chatActualTitle = driver.getTitle();
-        Assert.assertEquals(chatActualTitle, chatExpectedTitle);
+    public void leftSidebarTasksTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Tasks')]"));
+        tasks.click();
+        String expectedTitle="Site map"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Tasks title did not appear correctly!");
 
     }
 
     @Test
-    public void Workgroups() {
-
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("hr23@cydeo.com");
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-
-        WebElement Workgroups = driver.findElement(By.xpath("//a[@title='Workgroups']"));
-        Workgroups.click();
-
-        String workExpectedTitle = "Workgroups and projects";
-        String workActualTitle = driver.getTitle();
-        Assert.assertEquals(workActualTitle, workExpectedTitle);
-
+    public void leftSidebarChatAndCallsTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Chat and Calls')]"));
+        tasks.click();
+        String expectedTitle="Chat and Calls"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Chat And Calls title did not appear correctly!");
 
     }
 
     @Test
-    public void Drive() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("helpdesk23@cydeo.com");
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement Drive = driver.findElement(By.xpath("//a[@title='Drive']"));
-        Drive.click();
-
-        String driveExpectedTitle = "Site map";
-        String driveActualTitle = driver.getTitle();
-        Assert.assertEquals(driveActualTitle, driveExpectedTitle);
-
+    public void leftSidebarWorkgroupsTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Workgroups')]"));
+        tasks.click();
+        String expectedTitle="Workgroups and projects"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Workgroups and projects title did not appear correctly!");
 
     }
 
     @Test
-    public void Calendar() {
-
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("marketing23@cydeo.com");
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement Calendar = driver.findElement(By.xpath("//a[@title='Calendar']"));
-        Calendar.click();
-
-        String calendarExpectedTitle = "Site map";
-        String calendarActualTitle = driver.getTitle();
-        Assert.assertEquals(calendarActualTitle, calendarExpectedTitle);
-
+    public void leftSidebarDriveTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Drive')]"));
+        tasks.click();
+        String expectedTitle="Site map"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Drive title did not appear correctly!");
 
     }
 
     @Test
-    public void Mail() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("hr24@cydeo.com");
-
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement Mail = driver.findElement(By.xpath("//a[@title='Mail']"));
-        Mail.click();
-
-        String MailExpectedTitle = "(2) Mailbox Integration";
-        String MailActualTitle = driver.getTitle();
-        Assert.assertEquals(MailActualTitle,MailExpectedTitle);
+    public void leftSidebarCalendarTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Calendar')]"));
+        tasks.click();
+        String expectedTitle="Site map"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Calendar title did not appear correctly!");
 
     }
 
     @Test
-    public void Contact_Center() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("helpdesk24@cydeo.com");
+    public void leftSidebarMailTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Mail')]"));
+        tasks.click();
+        String expectedTitle="Mailbox Integration"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Mail title did not appear correctly!");
 
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement ContactCenter = driver.findElement(By.xpath("//a[@title='Contact Center']"));
-        ContactCenter.click();
-
-        String contactCenterExpectedTitle = "Contact Center";
-        String contactCenterActualTitle = driver.getTitle();
-        Assert.assertEquals(contactCenterActualTitle, contactCenterExpectedTitle);
     }
 
     @Test
-    public void TimeAnd_Reports() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("marketing24@cydeo.com");
+    public void leftSidebarContact_CenterTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Contact Center')]"));
+        tasks.click();
+        String expectedTitle="Contact Center"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Contact Center title did not appear correctly!");
 
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement TimeAndReports = driver.findElement(By.xpath("//a[@title='Time and Reports']"));
-        TimeAndReports.click();
-
-        String timeAndReportsExpectedTitle = "Absence Chart";
-        String timeAndReportsActualTitle = driver.getTitle();
-        Assert.assertEquals(timeAndReportsActualTitle, timeAndReportsExpectedTitle);
     }
 
     @Test
-    public void Employees() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("hr22@cydeo.com");
+    public void leftSidebarTimeAnd_ReportsTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Time and Reports')]"));
+        tasks.click();
+        String expectedTitle="Absence Chart"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Time and Reports title did not appear correctly!");
 
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement Employees = driver.findElement(By.xpath("//a[@title='Employees']"));
-        Employees.click();
-
-        String EmployeesExpectedTitle = "(4) Company Structure";
-        String EmployeesActualTitle = driver.getTitle();
-        Assert.assertEquals(EmployeesActualTitle, EmployeesExpectedTitle);
     }
 
     @Test
-    public void Services() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("helpdesk22@cydeo.com");
+    public void leftSidebarEmployeesTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Employees')]"));
+        tasks.click();
+        String expectedTitle="Company Structure"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Employees title did not appear correctly!");
 
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement Services = driver.findElement(By.xpath("//a[@title='Services']"));
-        Services.click();
-
-        String ServicesExpectedTitle = "Meeting Rooms";
-        String ServicesActualTitle = driver.getTitle();
-        Assert.assertEquals(ServicesActualTitle, ServicesExpectedTitle);
     }
 
     @Test
-    public void Company() {
-        WebElement username = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        username.sendKeys("marketing22@cydeo.com");
+    public void leftSidebarServicesTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Services')]"));
+        tasks.click();
+        String expectedTitle="Meeting Rooms"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Services title did not appear correctly!");
 
-        WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys("UserUser");
-
-        WebElement rememberCheckBox = driver.findElement(By.xpath("//input[@type='checkbox']"));
-        rememberCheckBox.click();
-
-        WebElement actual = driver.findElement(By.xpath("//label[.='Remember me on this computer']"));
-        actual.isDisplayed();
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='login-btn']"));
-        loginButton.click();
-
-        WebElement Company = driver.findElement(By.xpath("//a[@title='Company']"));
-        Company.click();
-
-        String CompanyExpectedTitle = "Company";
-        String CompanyActualTitle = driver.getTitle();
-        Assert.assertEquals(CompanyActualTitle, CompanyExpectedTitle);
     }
+
+    @Test
+    public void leftSidebarCompanyTest(){
+        WebElement tasks = driver.findElement(By.xpath("//span[contains(.,'Company')]"));
+        tasks.click();
+        String expectedTitle="Company"; // coming from requirement
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle,expectedTitle,"Company title did not appear correctly!");
+
+    }
+
 
     @AfterMethod
-    public void tearDownMethod(){
-
-        driver.close();
+    public void tearDown() {
+        BrowserUtils.sleep(3);
+        driver.quit();
     }
 
 }
